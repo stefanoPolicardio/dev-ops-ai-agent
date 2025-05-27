@@ -1,0 +1,109 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+project_language: python
+rules:
+  - name: Folder structure
+    description: Use a modular package structure
+    rule: >
+      Organize the code as follows:
+      - `src/`: source code
+      - `src/<project_name>/`: main module
+      - `src/<project_name>/services/`: business logic
+      - `src/<project_name>/models/`: data classes and DTOs
+      - `src/<project_name>/utils/`: utility functions
+      - `tests/`: unit and integration tests using Pytest
+
+  - name: Naming conventions
+    description: Follow PEP8 naming conventions
+    rule: >
+      Use snake_case for variables and function names,
+      CamelCase for class names, and UPPER_CASE for constants.
+
+  - name: Type hints
+    description: Always use type annotations
+    rule: >
+      Follow PEP484 for static typing. All functions must include type annotations
+      for parameters and return values. Use Optional, Union, List, etc., where appropriate.
+
+  - name: Function definitions
+    description: Keep functions short, clear, and single-purpose
+    rule: >
+      Each function should have a single responsibility and ideally be under 20 lines.
+      Split logic into smaller functions if needed. Always include a descriptive docstring.
+
+  - name: Docstrings
+    description: Use descriptive docstrings for all modules, classes, and functions
+    rule: >
+      Follow PEP257 for docstrings. Prefer Google-style formatting:
+      ```
+      def foo(x: int) -> str:
+          """Convert a number to a string.
+          Args:
+              x (int): Number to convert.
+          Returns:
+              str: Text representation of the number.
+          """
+      ```
+
+  - name: Imports
+    description: Keep imports clean and ordered
+    rule: >
+      Use three blocks: standard libraries, third-party libraries, local modules.
+      Do not use wildcard imports (e.g., `from module import *`).
+
+  - name: Logging setup
+    description: Use logging instead of print statements
+    rule: >
+      Use the `logging` module for tracking information. Configure it in the main entry point:
+      ```python
+      import logging
+      logging.basicConfig(level=logging.INFO)
+      ```
+
+  - name: Logging quality
+    description: Logs must be clear, relevant, and useful for debugging
+    rule: >
+      Logs must be present at key steps of execution (e.g., start, success, errors).
+      Messages should be descriptive and context-aware. Avoid overly verbose or meaningless logs.
+
+  - name: Error handling
+    description: Handle errors explicitly and cleanly
+    rule: >
+      Use try/except blocks with specific exception types.
+      Avoid bare `except:` clauses. Log meaningful error messages.
+
+  - name: Configuration management
+    description: Keep configuration out of the code
+    rule: >
+      Use `.env` files or YAML/JSON configuration files.
+      Never hardcode values. Use `os.getenv()` or `pydantic.BaseSettings` for config management.
+
+  - name: Testing
+    description: Write automated tests for every module
+    rule: >
+      Use `pytest`. Every public function or method should have at least one test.
+      Match the structure of the source code under `tests/`, e.g., `tests/test_services/test_logic.py`.
+
+  - name: Dependency management
+    description: Declare and lock dependencies properly
+    rule: >
+      Use `pyproject.toml` (with Poetry) or `requirements.txt`.
+      Always lock versions in production and update regularly to avoid vulnerabilities.
+
+  - name: Linting and formatting
+    description: Enforce consistent style and type checking
+    rule: >
+      Use `black` for code formatting, `flake8` for linting, and `mypy` for type checking.
+      These tools should be run in CI pipelines and ideally integrated into pre-commit hooks.
+
+  - name: Comments and code clarity
+    description: Use comments to explain non-obvious logic
+    rule: >
+      Add comments to explain complex algorithms, edge cases, and design choices.
+      Every public method should have a docstring, and tricky logic must be commented clearly
+      to help future maintainers.
+
+This is a python code for AWS Lambda. You must user all the best practices for AWS Lambda develop and oficial aws pyhton SDK

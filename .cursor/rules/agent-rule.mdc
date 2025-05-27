@@ -1,0 +1,41 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+ruleset "OpenAI Agent Development Best Practices" {
+
+  description """
+  A set of best practices for developing AI agents using the OpenAI Agents SDK.
+  This ruleset ensures clarity, security, and maintainability across all agent-related code.
+  """
+
+  rule "Each agent must have a clear description" {
+    applies_to = "Agent"
+    condition = "agent.description IS NOT EMPTY"
+    error_message = "Every agent must include a description that clearly explains its purpose."
+  }
+
+  rule "Each tool function must include a docstring" {
+    applies_to = "Function"
+    condition = "function.is_tool AND NOT function.has_docstring"
+    error_message = "Tool functions must include a docstring describing behavior and expected parameters."
+  }
+
+  rule "Tool functions must validate input" {
+    applies_to = "Function"
+    condition = "function.is_tool AND NOT function.validates_inputs"
+    error_message = "Tool functions must include input validation to ensure security and robustness."
+  }
+
+  rule "Functions with side effects must include logging" {
+    applies_to = "Function"
+    condition = "function.contains_side_effects AND NOT function.uses_logging"
+    error_message = "Functions performing actions with side effects must log critical operations."
+  }
+
+  rule "Hardcoded API keys are not allowed" {
+    applies_to = "Code"
+    condition = "code.contains('api_key=') OR code.matches_
+
+Always use @tool decorator before the function definition of tools
